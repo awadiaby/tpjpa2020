@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "Type_Collaborateur")
 public class Collaborateur {
     private Long id;
     private String email;
@@ -13,8 +15,8 @@ public class Collaborateur {
     private String prenom;
     private List<Fiche> fiches = new ArrayList<>();
 
-@Id
-@GeneratedValue
+    @Id
+    @GeneratedValue
     public Long getId() {
         return id;
     }
@@ -46,6 +48,7 @@ public class Collaborateur {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+
     @OneToMany(mappedBy = "collaborateur", cascade = CascadeType.PERSIST)
     public List<Fiche> getFiches() {
         return fiches;

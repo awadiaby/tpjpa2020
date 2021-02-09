@@ -5,7 +5,9 @@ import entities.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.Date;
+import java.util.List;
 
 public class JpaTest {
 
@@ -23,6 +25,7 @@ public class JpaTest {
 
             createTableaux(manager);
             createFiche(manager);
+            recupererCollaborateurs(manager);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,11 +52,20 @@ public class JpaTest {
     }
 
     private static void createFiche(EntityManager manager) {
-        Collaborateur collaborateur = new Collaborateur();
+        CollaborateurMetier collaborateur = new CollaborateurMetier();
         collaborateur.setPrenom("Awa");
         collaborateur.setEmail("awadiaby19@gmail.com");
         collaborateur.setNom("Diaby");
+        collaborateur.setRole("RelationClient");
         manager.persist(collaborateur);
+
+        CollaborateurTechnique collaborateur1 = new CollaborateurTechnique();
+        collaborateur1.setRoleTech("Developpeur");
+        collaborateur1.setPrenom("Amadou");
+        collaborateur1.setEmail("amadia@gmail.com");
+        collaborateur1.setNom("Dia");
+        collaborateur1.setRoleTech("Dev");
+        manager.persist(collaborateur1);
 
         Fiche fiche = new Fiche();
         fiche.setCommit("addd");
@@ -65,6 +77,25 @@ public class JpaTest {
         fiche.setLieu("Rennes");
         fiche.setCollaborateur(collaborateur);
 
+
         manager.persist(fiche);
+    }
+
+    private static void recupererCollaborateurs(EntityManager manager) {
+        String s = "select c from Collaborateur as c"; //requete normal
+        String p = "select c from Collaborateur as c join Fiche as f on c.id = f.collaborateur.id" ;
+        Query q = manager.createQuery(s, Collaborateur.class);
+        Query q1 = manager.createQuery(p, Collaborateur.class);
+        //q.setParameter("prenom", "hugo");
+        List<Collaborateur> res = q1.getResultList();
+        for (Collaborateur collaborateur : res) {
+            System.out.println("Affich ensemble collabaorateur : " + collaborateur);
+        }
+//
+        System.err.println(res.size());
+        //System.err.println(res.get(0).getNom());
+
+        //  manager.close();
+
     }
 }
