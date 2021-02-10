@@ -16,4 +16,11 @@ public class CollaborateurMetier extends Collaborateur{
     public void setRole(String role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "CollaborateurMetier{" +
+                "role='" + role + '\'' +
+                '}';
+    }
 }

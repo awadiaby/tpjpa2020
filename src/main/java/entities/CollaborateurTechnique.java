@@ -16,4 +16,11 @@ public class CollaborateurTechnique extends Collaborateur {
     public void setRoleTech(String roleTech) {
         this.roleTech = roleTech;
     }
+
+    @Override
+    public String toString() {
+        return "CollaborateurTechnique{" +
+                "roleTech='" + roleTech + '\'' +
+                '}';
+    }
 }

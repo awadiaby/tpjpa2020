@@ -58,14 +58,14 @@ public class Collaborateur {
         this.fiches = fiches;
     }
 
-    @Override
-    public String toString() {
-        return "Collaborateur{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", fiches=" + fiches +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Collaborateur{" +
+//                "id=" + id +
+//                ", email='" + email + '\'' +
+//                ", nom='" + nom + '\'' +
+//                ", prenom='" + prenom + '\'' +
+//                ", fiches=" + fiches +
+//                '}';
+//    }
 }

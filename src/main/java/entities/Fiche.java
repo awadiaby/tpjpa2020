@@ -5,6 +5,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@NamedQueries(
+        {
+                @NamedQuery(name = "TouteslesFiches", query = "select f from Fiche as f"),
+                @NamedQuery(name = "ToutesLesFichesAujoudhui", query = "select f from Fiche  as f WHERE f.date = :date")
+        }
+)
 public class Fiche {
     private Long id;
     private String libelle;

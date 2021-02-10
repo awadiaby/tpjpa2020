@@ -23,9 +23,11 @@ public class JpaTest {
 
         try {
 
-            createTableaux(manager);
-            createFiche(manager);
+//            createTableaux(manager);
+//            createFiche(manager);
             recupererCollaborateurs(manager);
+            recupererFiche(manager);
+            recupererFicheAujoudhui(manager);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,12 +85,17 @@ public class JpaTest {
 
     private static void recupererCollaborateurs(EntityManager manager) {
         String s = "select c from Collaborateur as c"; //requete normal
-        String p = "select c from Collaborateur as c join Fiche as f on c.id = f.collaborateur.id" ;
-        Query q = manager.createQuery(s, Collaborateur.class);
-        Query q1 = manager.createQuery(p, Collaborateur.class);
-        //q.setParameter("prenom", "hugo");
-        List<Collaborateur> res = q1.getResultList();
+        Query query = manager.createQuery(s, Collaborateur.class);
+
+        List<Collaborateur> res = query.getResultList();
         for (Collaborateur collaborateur : res) {
+            System.out.println("Affich ensemble collabaorateur : " + collaborateur);
+        }
+        String p = "select c from Collaborateur as c join Fiche as f on c.id = f.collaborateur.id" ;
+
+       Query q = manager.createQuery(p, Collaborateur.class); //q.setParameter("prenom", "Awa");
+        List<Collaborateur> res1 = q.getResultList();
+        for (Collaborateur collaborateur : res1) {
             System.out.println("Affich ensemble collabaorateur : " + collaborateur);
         }
 //
@@ -98,4 +105,22 @@ public class JpaTest {
         //  manager.close();
 
     }
+
+    private static void recupererFiche(EntityManager manager) {
+        Query query = manager.createNamedQuery("TouteslesFiches");
+        List<Fiche> res = query.getResultList();
+        for (Fiche fiche : res) {
+            System.out.println("Affiche ensemble des fiches : " + fiche);
+        }
+    }
+
+    private static void recupererFicheAujoudhui(EntityManager manager) {
+        Query query = manager.createNamedQuery("ToutesLesFichesAujoudhui");
+        query.setParameter("date", new Date());
+        List<Fiche> res = query.getResultList();
+        for (Fiche fiche : res) {
+            System.out.println("Affiche ensemble des fiches Aujoud'hui : " + fiche);
+        }
+    }
+
 }
