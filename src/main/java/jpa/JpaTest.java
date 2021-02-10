@@ -77,7 +77,7 @@ public class JpaTest {
         fiche.setNote("bien il manque des choses");
         fiche.setLieu("Rennes");
         fiche.setCollaborateur(collaborateur);
-
+        collaborateur.getFiches().add(fiche);
 
         manager.persist(fiche);
     }
