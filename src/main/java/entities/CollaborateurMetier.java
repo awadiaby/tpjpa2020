@@ -6,7 +6,7 @@ import javax.persistence.Inheritance;
 
 @Entity
 @DiscriminatorValue("Metier")
-public class CollaborateurMetier extends Collaborateur{
+public class CollaborateurMetier extends Collaborateur {
     private String role;
 
     public String getRole() {
@@ -19,7 +19,7 @@ public class CollaborateurMetier extends Collaborateur{
 
     @Override
     public String toString() {
-        return "CollaborateurMetier{" +
+        return super.toString() + "CollaborateurMetier{" +
                 "role='" + role + '\'' +
                 '}';
     }

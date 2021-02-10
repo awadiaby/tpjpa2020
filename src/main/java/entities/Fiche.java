@@ -107,7 +107,6 @@ public class Fiche {
                 ", url='" + url + '\'' +
                 ", note='" + note + '\'' +
                 ", date=" + date +
-                ", collaborateur=" + collaborateur +
                 '}';
     }
 }

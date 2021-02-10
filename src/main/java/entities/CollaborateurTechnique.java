@@ -19,7 +19,7 @@ public class CollaborateurTechnique extends Collaborateur {
 
     @Override
     public String toString() {
-        return "CollaborateurTechnique{" +
+        return super.toString() + "CollaborateurTechnique{" +
                 "roleTech='" + roleTech + '\'' +
                 '}';
     }

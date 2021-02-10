@@ -22,9 +22,8 @@ public class JpaTest {
 
 
         try {
-
-//            createTableaux(manager);
-//            createFiche(manager);
+            createTableaux(manager);
+            createFiche(manager);
             recupererCollaborateurs(manager);
             recupererFiche(manager);
             recupererFicheAujoudhui(manager);
@@ -91,9 +90,9 @@ public class JpaTest {
         for (Collaborateur collaborateur : res) {
             System.out.println("Affich ensemble collabaorateur : " + collaborateur);
         }
-        String p = "select c from Collaborateur as c join Fiche as f on c.id = f.collaborateur.id" ;
+        String p = "select c from Collaborateur as c join Fiche as f on c.id = f.collaborateur.id";
 
-       Query q = manager.createQuery(p, Collaborateur.class); //q.setParameter("prenom", "Awa");
+        Query q = manager.createQuery(p, Collaborateur.class); //q.setParameter("prenom", "Awa");
         List<Collaborateur> res1 = q.getResultList();
         for (Collaborateur collaborateur : res1) {
             System.out.println("Affich ensemble collabaorateur : " + collaborateur);
